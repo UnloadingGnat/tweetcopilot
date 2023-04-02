@@ -8,7 +8,7 @@ import { TRPCError } from "@trpc/server";
 const filterUseForClient = (user: User) => {
   return {
     id: user.id,
-    username: user.username,
+    username: user.firstName,
     profileImageUrl: user.profileImageUrl,
   };
 };
@@ -38,8 +38,12 @@ export const postsRouter = createTRPCRouter({
 
       return {
         post,
-        author,
+        author: {
+          ...author,
+          username: author.username || author.id,
+        },
       };
+
     });
   }),
 });

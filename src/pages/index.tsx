@@ -6,6 +6,10 @@ import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { api, RouterOutputs } from "~/utils/api";
 import Image from "next/image";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+
 const CreatePost = () => {
   const { user } = useUser();
 
@@ -25,7 +29,7 @@ const CreatePost = () => {
       <input
         size={60}
         placeholder="Write a Tweet on autopilot"
-        className="border-b bg-transparent"
+        className="border-b bg-transparent outline-0"
       />
     </div>
   );
@@ -40,8 +44,11 @@ const PostView = (props: PostWithUser) => {
       className="flex w-full items-center gap-3 border-b border-slate-500 p-8"
       key={post.id}
     >
-      <img className="w-10 rounded-full" src={author.profileImageUrl} />
-      {post.content}
+      <img alt="Author of post profile pic" className="w-10 rounded-full" src={author.profileImageUrl} />
+      <div className="flex flex-col">
+        <span className="text-gray-400">{`@${author.username}`} · {`${dayjs(post.createdAt).fromNow()}`}</span>
+        <span>{post.content}</span>
+      </div>
     </div>
   );
 };
