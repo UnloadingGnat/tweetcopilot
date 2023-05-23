@@ -1,17 +1,33 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 import { api, RouterOutputs } from "~/utils/api";
-import Image from "next/image";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import {LoadingSpinner} from "~/components/loading";
+import {useState} from "react";
+import {IconSend} from "@tabler/icons-react";
+
 dayjs.extend(relativeTime);
 
 const CreatePost = () => {
   const { user } = useUser();
+
+  const ctx = api.useContext()
+
+  const [input, setInput] = useState("")
+
+  const {mutate, isLoading} = api.posts.create.useMutation({
+    onSuccess: () => {
+      setInput("");
+      void ctx.posts.getAll.invalidate();
+
+    }
+  });
+
+
 
   console.log(user);
 
@@ -20,7 +36,7 @@ const CreatePost = () => {
   }
 
   return (
-    <div className="mt-10 mt-3 flex h-12 w-full gap-3">
+    <div className="mt-3 flex h-12 w-full gap-3">
       <img
         src={user.profileImageUrl}
         alt="profile image"
@@ -30,28 +46,41 @@ const CreatePost = () => {
         size={60}
         placeholder="Write a Tweet on autopilot"
         className="border-b bg-transparent outline-0"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        disabled={isLoading}
       />
+      <button onClick={() => mutate({ content: input})}><IconSend /></button>
     </div>
   );
 };
 
-type PostWithUser = RouterOutputs["posts"]["getAll"][number];
-const PostView = (props: PostWithUser) => {
-  const { post, author } = props;
+// 14416   --------------------------- 14416
 
+
+type PostWithUser = RouterOutputs["posts"]["getAll"][number];
+const PostView = ({post, author} : PostWithUser) => {
+  
   return (
     <div
       className="flex w-full items-center gap-3 border-b border-slate-500 p-8"
       key={post.id}
     >
-      <img alt="Author of post profile pic" className="w-10 rounded-full" src={author.profileImageUrl} />
+      <img
+        alt="Author of post profile pic"
+        className="w-10 rounded-full"
+        src={author.profileImageUrl}
+      />
       <div className="flex flex-col">
-        <span className="text-gray-400">{`@${author.username}`} · {`${dayjs(post.createdAt).fromNow()}`}</span>
+        <span className="text-gray-400">
+          {`@${author.username}`} · {`${dayjs(post.createdAt).fromNow()}`}
+        </span>
         <span>{post.content}</span>
       </div>
     </div>
   );
 };
+
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -59,7 +88,7 @@ const Home: NextPage = () => {
   const { data, isLoading } = api.posts.getAll.useQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (!data) {
