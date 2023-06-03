@@ -143,7 +143,7 @@ const CreatePost = () => {
                 className="cursor-pointer text-gray-400"
                 href="https://openai.com/blog/openai-api/"
               >
-                OpenAI's GPT-3
+                OpenAI&apos;s GPT-3
               </a>
             </div>
             <button onClick={() => validateAndMutate(generatedTweet)}>
