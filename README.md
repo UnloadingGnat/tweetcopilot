@@ -2,5 +2,14 @@
 
 ## https://tweetcopilot.vercel.app/
 
-Twitter Clone w/ ChatGPT [Work in Progress]
+Twitter Clone w/ ChatGPT
 
+
+## Purpose
+
+
+## System Design
+
+
+
+## Getting Started
