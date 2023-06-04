@@ -25,7 +25,11 @@ const CreatePost = () => {
   const [generatedTweet, setGeneratedTweet] = useState<string>("");
 
   const prompt = `Write a twitter tweet in 240 characters or less for the following context: ${
-    tweet.trim().split(/\s+/).length < 150 && tweet ? tweet : " test"
+    tweet.trim().split(/\s+/).length < 150 && tweet
+      ? tweet
+      : "Introducing TweetCoPilot - the social media platform that uses ChatGPT to keep your tweets within the " +
+        "character limit. Express yourself effortlessly and connect with followers in a whole new way. Sign up today and " +
+        "experience the ultimate social media innovation!"
   }${tweet.slice(-1) === "." ? "" : "."}`;
   const generateTweet = async (e: any) => {
     e.preventDefault();
@@ -206,6 +210,15 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Tweet <span className="text-[#1D9BF0]">CoPilot</span>
           </h1>
+          <p className="text-gray-400">
+            By{" "}
+            <a
+              className="text-gray-400 hover:underline"
+              href="https://jaavin.ca/"
+            >
+              Jaavin
+            </a>
+          </p>
           <div className="flex w-full justify-center border-b border-slate-500 p-4">
             {!user.isSignedIn && (
               <SignInButton>
