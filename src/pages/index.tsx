@@ -2,9 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import TextareaAutosize from "react-textarea-autosize";
-
 import { api, RouterOutputs } from "~/utils/api";
-
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { LoadingSpinner } from "~/components/loading";
@@ -67,7 +65,6 @@ const CreatePost = () => {
       }
     };
 
-    // https://web.dev/streams/#the-getreader-and-read-methods
     const reader = data.getReader();
     const decoder = new TextDecoder();
     const parser = createParser(onParse);
@@ -156,12 +153,9 @@ const CreatePost = () => {
           </div>
         </div>
       )}
-      {/*<IconSend />*/}
     </div>
   );
 };
-
-// 14416   --------------------------- 14416
 
 type PostWithUser = RouterOutputs["posts"]["getAll"][number];
 const PostView = ({ post, author }: PostWithUser) => {
@@ -195,7 +189,7 @@ const Home: NextPage = () => {
   }
 
   if (!data) {
-    return <div>Something went wrong</div>;
+    return <div>Something went wrong. Database is sleeping due to inactivity. Please Contact Jaavin to wake it up.</div>;
   }
 
   return (

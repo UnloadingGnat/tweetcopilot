@@ -6,9 +6,7 @@ import {
 import { clerkClient } from "@clerk/nextjs/server";
 import type { User } from "@clerk/nextjs/dist/api";
 import { TRPCError } from "@trpc/server";
-import { Simulate } from "react-dom/test-utils";
 import { z } from "zod";
-import input = Simulate.input;
 
 const filterUseForClient = (user: User) => {
   return {
