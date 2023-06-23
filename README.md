@@ -7,6 +7,9 @@ Say goodbye to the struggle of fitting your thoughts into a tweet! 🤯 Introduc
 
 ## https://tweetcopilot.vercel.app/
 
+### Tech Stack
+React, NextJS, MySQL,TRPC, Prisma
+
 ## Screenshots
 ![intro](./public/intro.png)
 ![dogs](./public/dogs.png)
