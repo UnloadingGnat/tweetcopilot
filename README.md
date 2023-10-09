@@ -7,6 +7,11 @@ Say goodbye to the struggle of fitting your thoughts into a tweet! 🤯 Introduc
 
 ## https://tweetcopilot.vercel.app/
 
+# ChatGPT message generation is down, contact me for a demo
+
+### Tech Stack
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) TRPC ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+
 ## Screenshots
 ![intro](./public/intro.png)
 ![dogs](./public/dogs.png)
