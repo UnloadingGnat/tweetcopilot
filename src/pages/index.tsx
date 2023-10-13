@@ -190,7 +190,7 @@ const Home: NextPage = () => {
   }
 
   if (!data) {
-    return <div className="flex items-center gap-2 text-2xl m-1">Something went wrong. Database is sleeping due to inactivity. Please Contact <Link className="text-blue-500 underline underline-offset-4" href="https://jaavin.ca/">Jaavin</Link> to wake it up.</div>;
+    return <div className="gap-2 text-2xl mt-20 ml-16 inline p-2">Something went wrong. Database is sleeping due to inactivity. Please Contact <Link className="text-blue-500 underline underline-offset-4" href="https://jaavin.ca/">Jaavin</Link> to wake it up.</div>;
   }
 
   return (
